@@ -88,9 +88,11 @@ print timeit.default_timer() - start
 # u, v
 # u, v
 # s
-# example
-# 3 3
+# example:
+# 4 3
 # 1 2
 # 2 3
 # 3 1
-# 1
+# 2
+# Output:
+# {1: 1, 2: 0, 3: 1, 4: -1}
