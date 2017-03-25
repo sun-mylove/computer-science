@@ -81,3 +81,16 @@ dist_of_vertices(edges, starting_vertex)
 print distances
 
 print timeit.default_timer() - start
+
+#################################
+# input format:
+# n, m
+# u, v
+# u, v
+# s
+# example
+# 3 3
+# 1 2
+# 2 3
+# 3 1
+# 1
