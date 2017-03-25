@@ -11,7 +11,7 @@ def dist_of_vertices(e, s):
     # we don't process BFS for already visited vertex
     ver_visited = []
 
-    # a queue data structure to pick elements to apply BFS
+    # a QUEUE data structure to pick elements to apply BFS
     ver_traverse_queue = deque([])
 
     # initialize below data structures that drive the BFS
@@ -85,8 +85,8 @@ print timeit.default_timer() - start
 #################################
 # input format:
 # n, m
-# u, v
-# u, v
+# u1 v1
+# u2 v2
 # s
 # example:
 # 4 3
