@@ -4,7 +4,7 @@ from collections import deque
 start = timeit.default_timer()
 
 
-def dist_of_vertices(e, s):
+def graph_bfs(e, s):
     global distances
 
     # a list to keep track of all visited vertices to ensure
@@ -76,7 +76,7 @@ for ver in xrange(1, n + 1):
 
 # calling BFS algorithm that calculates distance of each vertex from
 # starting vertex
-dist_of_vertices(edges, starting_vertex)
+graph_bfs(edges, starting_vertex)
 
 print distances
 
