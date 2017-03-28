@@ -4,9 +4,9 @@ start = timeit.default_timer()
 
 
 def directed_graph_dfs(e):
-    global n
     global ver_visited
     global ver_traverse_stack
+
     global topological_sort
 
     while len(ver_traverse_stack) != 0:
@@ -15,8 +15,7 @@ def directed_graph_dfs(e):
         try:
             vertices = e[ver_picked]
         except KeyError:
-            topological_sort[n] = ver_picked
-            n -= 1
+            topological_sort.append(ver_picked)
             continue
 
         for vertex in vertices:
@@ -25,10 +24,10 @@ def directed_graph_dfs(e):
                 ver_traverse_stack.append(vertex)
                 directed_graph_dfs(e)
 
-        topological_sort[n] = ver_picked
-        n -= 1
+        topological_sort.append(ver_picked)
 
-# program begins here
+
+# PROGRAM BEGINS HERE
 # read number of vertices - n; and
 # number of edges - m
 n, m = map(int, raw_input().strip().split(' '))
@@ -63,14 +62,14 @@ ver_visited.append(starting_vertex)
 ver_traverse_stack.append(starting_vertex)
 
 # dictionary that holds the topological sort order of vertices
-topological_sort = {}
+topological_sort = []
 
 # calling DFS algorithm
 directed_graph_dfs(edges)
 
 print "DFS Order:", ver_visited
 
-print [topological_sort[k] for k in sorted(topological_sort.keys())]
+print [topological_sort[k] for k in xrange(len(topological_sort) - 1, -1, -1)]
 
 print timeit.default_timer() - start
 
