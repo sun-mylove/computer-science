@@ -4,46 +4,45 @@ start = timeit.default_timer()
 
 
 def directed_graph_dfs(e, s):
-    global n
-    global topological_sort
     global dfs_order
+    global set_dfs_order
+    global topological_sort
 
     # a list to keep track of all visited vertices to ensure
     # we don't process DFS for already visited vertex
-    ver_visited = []
+    ver_visited = set([])
 
     # a STACK data structure to pick elements to apply DFS
     ver_traverse_stack = []
 
     # initializing with starting vertex
-    ver_visited.append(s)
+    ver_visited.add(s)
     ver_traverse_stack.append(s)
 
     while len(ver_traverse_stack) != 0:
         child = 0
         ver_picked = ver_traverse_stack[-1]
 
-        if ver_picked not in dfs_order:
+        if ver_picked not in set_dfs_order:
             dfs_order.append(ver_picked)
+            set_dfs_order.add(ver_picked)
 
         try:
             vertices = e[ver_picked]
         except KeyError:
-            topological_sort[n] = ver_traverse_stack.pop()
-            n -= 1
+            topological_sort.append(ver_traverse_stack.pop())
             continue
 
         for vertex in vertices:
             if vertex not in ver_visited:
-                ver_visited.append(vertex)
+                ver_visited.add(vertex)
                 ver_traverse_stack.append(vertex)
                 child += 1
 
         if child == 0:
-            topological_sort[n] = ver_traverse_stack.pop()
-            n -= 1
+            topological_sort.append(ver_traverse_stack.pop())
 
-# program begins here
+# PROGRAM BEGINS HERE
 # read number of vertices - n; and
 # number of edges - m
 n, m = map(int, raw_input().strip().split(' '))
@@ -66,17 +65,18 @@ for edge in xrange(m):
 starting_vertex = int(raw_input().strip())
 
 # dictionary that holds the topological sort order of vertices
-topological_sort = {}
+topological_sort = []
 
 # a list to keep track of the vertices visited applying DFS
 dfs_order = []
+set_dfs_order = set([])
 
 # calling DFS algorithm
 directed_graph_dfs(edges, starting_vertex)
 
 print "dfs order", dfs_order
 
-print [topological_sort[k] for k in sorted(topological_sort.keys())]
+print [topological_sort[k] for k in xrange(len(topological_sort) - 1, -1, -1)]
 
 print timeit.default_timer() - start
 
