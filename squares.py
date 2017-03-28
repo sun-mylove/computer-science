@@ -4,22 +4,25 @@ import timeit
 start = timeit.default_timer()
 
 
-def find_square(prev, i):
+# this function finds all the squares (of natural numbers)
+# that are less than given input
+def next_square(prev, i):
+    # (n + 1)^2 = n^2 + 2n + 1
     return prev + 2 * i + 1
 
-inp = 81 * 99
-sqr = [1]
+inp = 1000000000000
+squares = [1]
 
 i = 1
 prev = 1
 while True:
-    prev = find_square(prev, i)
+    prev = next_square(prev, i)
     if prev > inp:
         break
-    sqr.append(prev)
+    squares.append(prev)
     i += 1
 
-
-print len(sqr), sqr
+print "Squares:", squares
+print "Num of squares below %d are %d" % (inp, len(squares))
 
 print timeit.default_timer() - start
