@@ -8,13 +8,13 @@ def undirected_graph_dfs(e, s):
 
     # a list to keep track of all visited vertices to ensure
     # we don't process DFS for already visited vertex
-    ver_visited = []
+    ver_visited = set([])
 
     # a STACK data structure to pick elements to apply DFS
     ver_traverse_stack = []
 
     # initializing with starting vertex
-    ver_visited.append(s)
+    ver_visited.add(s)
     ver_traverse_stack.append(s)
 
     while len(ver_traverse_stack) != 0:
@@ -26,11 +26,11 @@ def undirected_graph_dfs(e, s):
 
         for vertex in vertices:
             if vertex not in ver_visited:
-                ver_visited.append(vertex)
+                ver_visited.add(vertex)
                 ver_traverse_stack.append(vertex)
 
 
-# program begins here
+# PROGRAM BEGINS HERE
 # read number of vertices - n; and
 # number of edges - m
 n, m = map(int, raw_input().strip().split(' '))
