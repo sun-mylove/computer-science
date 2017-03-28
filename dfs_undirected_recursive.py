@@ -19,7 +19,7 @@ def undirected_graph_dfs(e):
                 undirected_graph_dfs(e)
 
 
-# program begins here
+# PROGRAM BEGINS HERE
 # read number of vertices - n; and
 # number of edges - m
 n, m = map(int, raw_input().strip().split(' '))
