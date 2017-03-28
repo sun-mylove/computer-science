@@ -39,7 +39,6 @@ def dfs_reverse_graph(e):
     global set_ver_visited
     global ver_traverse_stack
 
-    global dfs_order
     global topological_sort
 
     while len(ver_traverse_stack) != 0:
@@ -52,9 +51,6 @@ def dfs_reverse_graph(e):
         # children under it; that way, we pop them only when they are
         # finished; hence building topological order
         ver_picked = ver_traverse_stack[-1]
-
-        if ver_picked not in dfs_order:
-            dfs_order.add(ver_picked)
 
         try:
             vertices = e[ver_picked]
@@ -80,8 +76,6 @@ def dfs_original_graph(e):
     global set_ver_visited
     global ver_traverse_stack
 
-    global dfs_order
-
     # every time DFS is called with a vertex, we keep track of all the
     # vertices it visits which is nothing but the SCC of that specific vertex
     ver_visited_temp = []
@@ -90,8 +84,6 @@ def dfs_original_graph(e):
         # as we are not here to build topological order, we're
         # popping element as we progress
         ver_picked = ver_traverse_stack.pop()
-
-        dfs_order.add(ver_picked)
 
         try:
             vertices = e[ver_picked]
@@ -129,9 +121,6 @@ set_ver_visited = set([])
 # a STACK data structure to pick elements to apply DFS
 ver_traverse_stack = []
 
-# a variable to keep order of the vertices visited while applying DFS
-dfs_order = set([])
-
 # a variable to holds the topological order of vertices
 topological_sort = []
 
@@ -145,7 +134,6 @@ for v in xrange(n, 0, -1):
         ver_traverse_stack.append(v)
         dfs_reverse_graph(edges_reversed)
 
-print "REV- DFS Order:", dfs_order
 print "REV- Top Order:", [topological_sort[ind] for ind in xrange(len(topological_sort) - 1, -1, -1)]
 
 # a list to keep track of all visited vertices to ensure
@@ -154,9 +142,6 @@ set_ver_visited = set([])
 
 # a STACK data structure to pick elements to apply DFS
 ver_traverse_stack = []
-
-# a variable to keep order of the vertices visited while applying DFS
-dfs_order = set([])
 
 # a variable to hold SCCs of G
 scc = {}
@@ -174,7 +159,30 @@ while len(topological_sort) != 0:
         ver_traverse_stack.append(v)
         scc[v] = dfs_original_graph(edges)
 
-print "ORG- DFS Order:", dfs_order
 print "ORG- SCC:", scc
 
 print timeit.default_timer() - start
+
+#################################
+# input format:
+# n, m
+# u1 v1
+# u2 v2
+# example:
+# 9 11
+# 7 1
+# 1 4
+# 4 7
+# 9 7
+# 9 3
+# 6 9
+# 3 6
+# 8 6
+# 2 8
+# 8 5
+# 5 2
+# Output:
+# edges: {1: [4], 2: [8], 3: [6], 4: [7], 5: [2], 6: [9], 7: [1], 8: [6, 5], 9: [7, 3]}
+# edges reverse: {1: [7], 2: [5], 3: [9], 4: [1], 5: [8], 6: [3, 8], 7: [4, 9], 8: [2], 9: [6]}
+# REV- Top Order: [7, 4, 1, 9, 6, 3, 8, 2, 5]
+# ORG- SCC: {8: [5, 2], 9: [3, 6], 7: [1, 4]}
