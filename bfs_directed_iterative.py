@@ -4,8 +4,15 @@ from collections import deque
 start = timeit.default_timer()
 
 
-def graph_bfs(e, s):
-    global distances
+def bfs_directed(e, s):
+    # dictionary to hold the distances of each vertex from starting vertex
+    distances = {}
+
+    # initializing the distances dictionary with "-1" value for all vertices;
+    # the BFS algorithm will overwrite with correct value; if not, the vertex
+    # is deemed to be unreachable from staring vertex
+    for ver in xrange(1, n + 1):
+        distances[ver] = -1
 
     # a list to keep track of all visited vertices to ensure
     # we don't process BFS for already visited vertex
@@ -35,6 +42,8 @@ def graph_bfs(e, s):
                 ver_traverse_queue.append(vertex)
                 distances[vertex] = distances[ver_picked] + 1
 
+    return distances
+
 
 # program begins here
 # read number of vertices - n; and
@@ -59,20 +68,9 @@ for edge in xrange(m):
 # read the starting vertex
 starting_vertex = int(raw_input().strip())
 
-# dictionary to hold the distances of each vertex from starting vertex
-distances = {}
-
-# initializing the distances dictionary with "-1" value for all vertices;
-# the BFS algorithm will overwrite with correct value; if not, the vertex
-# is deemed to be unreachable from staring vertex
-for ver in xrange(1, n + 1):
-    distances[ver] = -1
-
 # calling BFS algorithm that calculates distance of each vertex from
 # starting vertex
-graph_bfs(edges, starting_vertex)
-
-print distances
+print bfs_directed(edges, starting_vertex)
 
 print timeit.default_timer() - start
 
