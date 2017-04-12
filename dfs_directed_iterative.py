@@ -3,10 +3,13 @@ import timeit
 start = timeit.default_timer()
 
 
-def directed_graph_dfs(e, s):
-    global dfs_order
-    global set_dfs_order
-    global topological_sort
+def dfs_directed(e, s):
+    # dictionary that holds the topological sort order of vertices
+    topological_sort = []
+
+    # a list to keep track of the vertices visited applying DFS
+    dfs_order = []
+    set_dfs_order = set([])
 
     # a list to keep track of all visited vertices to ensure
     # we don't process DFS for already visited vertex
@@ -42,6 +45,10 @@ def directed_graph_dfs(e, s):
         if child == 0:
             topological_sort.append(ver_traverse_stack.pop())
 
+    # topological sort is returned in reverse order
+    return dfs_order, topological_sort
+
+
 # PROGRAM BEGINS HERE
 # read number of vertices - n; and
 # number of edges - m
@@ -64,19 +71,8 @@ for edge in xrange(m):
 # read the starting vertex
 starting_vertex = int(raw_input().strip())
 
-# dictionary that holds the topological sort order of vertices
-topological_sort = []
-
-# a list to keep track of the vertices visited applying DFS
-dfs_order = []
-set_dfs_order = set([])
-
 # calling DFS algorithm
-directed_graph_dfs(edges, starting_vertex)
-
-print "dfs order", dfs_order
-
-print [topological_sort[k] for k in xrange(len(topological_sort) - 1, -1, -1)]
+print dfs_directed(edges, starting_vertex)
 
 print timeit.default_timer() - start
 
