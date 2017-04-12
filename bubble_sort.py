@@ -1,13 +1,15 @@
-
 import timeit
 
 start = timeit.default_timer()
 
 
 def bubble_sort(arr):
+    # variable to hold number of swaps made during
+    # sorting process; number of swaps in bubble sort
+    # is same as number of inversions in merge sort
+    total_swaps = 0
 
     n = len(arr)
-    global total_swaps
 
     # logic to compare each element with adjacent (right) element till end of
     # the array is executed for "n-1" number of times. Each loop moves the
@@ -33,20 +35,17 @@ def bubble_sort(arr):
         if swaps == 0:
             break
 
-    return arr
+    return arr, total_swaps
 
 
 inp = [5, 12, 8, 1, 0, 9, 3, 7]
-# variable to hold number of swaps made during
-# sorting process; number of swaps in bubble sort
-# is same as number of inversions in merge sort
-total_swaps = 0
 
-sorted_inp = bubble_sort(inp)
-print sorted_inp
-print total_swaps
+print bubble_sort(inp)
 
 stop = timeit.default_timer()
 
 print stop - start
 
+###################################
+# Output:
+# ([0, 1, 3, 5, 7, 8, 9, 12], 16)
