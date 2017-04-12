@@ -1,4 +1,3 @@
-
 import timeit
 
 start = timeit.default_timer()
@@ -100,3 +99,8 @@ print inversions
 stop = timeit.default_timer()
 
 print stop - start
+
+############################
+# Output:
+# [0, 1, 3, 5, 7, 8, 9, 12]
+# 17
