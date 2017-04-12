@@ -1,13 +1,16 @@
-
 import timeit
 
 start = timeit.default_timer()
 
 
 def insertion_sort(arr):
+    # variable to hold number of swaps made during
+    # sorting process; number of swaps in insertion sort
+    # is same as number of swaps in bubble sort; and same
+    # as number of inversions in merge sort
+    total_swaps = 0
 
     n = len(arr)
-    global total_swaps
 
     # Starting with 1st element (until nth element), each element is compared
     # against elements to its left until the 0th element; placing the element picked
@@ -18,8 +21,8 @@ def insertion_sort(arr):
 
         # Below print statements show the left and right parts each
         # time pivot is selected
-        print "left", arr[:i]
-        print "right", arr[i + 1:]
+        # print "left", arr[:i]
+        # print "right", arr[i + 1:]
 
         for j in xrange(i-1, -1, -1):
             if pivot < arr[j]:
@@ -28,20 +31,18 @@ def insertion_sort(arr):
 
                 total_swaps += 1
 
-    return arr
+    return arr, total_swaps
 
 
 inp = [6, 5, 4, 3, 2, 1]
-# variable to hold number of swaps made during
-# sorting process; number of swaps in insertion sort
-# is same as number of swaps in bubble sort; and same
-# as number of inversions in merge sort
-total_swaps = 0
 
-sorted_inp = insertion_sort(inp)
-print sorted_inp
-print total_swaps
+print insertion_sort(inp)
 
 stop = timeit.default_timer()
 
 print stop - start
+
+####################################
+# Output:
+# ([1, 2, 3, 4, 5, 6], 15)
+
