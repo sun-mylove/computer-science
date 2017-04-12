@@ -3,8 +3,9 @@ import timeit
 start = timeit.default_timer()
 
 
-def undirected_graph_dfs(e, s):
-    global dfs_order
+def dfs_undirected(e, s):
+    # a list to keep track of the vertices visited applying DFS
+    dfs_order = []
 
     # a list to keep track of all visited vertices to ensure
     # we don't process DFS for already visited vertex
@@ -28,6 +29,8 @@ def undirected_graph_dfs(e, s):
             if vertex not in ver_visited:
                 ver_visited.add(vertex)
                 ver_traverse_stack.append(vertex)
+
+    return dfs_order
 
 
 # PROGRAM BEGINS HERE
@@ -57,14 +60,8 @@ for edge in xrange(m):
 # read the starting vertex
 starting_vertex = raw_input().strip()
 
-# a list to keep track of the vertices visited applying DFS
-dfs_order = []
-
-# calling DFS algorithm
-undirected_graph_dfs(edges, starting_vertex)
-
 # Output of DFS
-print "DFS Order:", dfs_order
+print dfs_undirected(edges, starting_vertex)
 
 print timeit.default_timer() - start
 
@@ -75,6 +72,7 @@ print timeit.default_timer() - start
 # u2 v2
 # s
 # example:
+# 10 11
 # A B
 # A E
 # B F
@@ -88,4 +86,4 @@ print timeit.default_timer() - start
 # H I
 # A
 # Output:
-# ['A', 'E', 'H', 'I', 'F', 'J', 'G', 'C', 'D', 'B']
+# ['A', 'E', 'D', 'H', 'I', 'F', 'J', 'G', 'C', 'B']
