@@ -87,6 +87,9 @@ def dijkstra(n, e, e_lengths, s):
 
                     # if the new distance is smaller, we update the heap
                     if new_ver_d < ver_d:
+                        # after removing an element from heap, heapify should be called.
+                        # But the subsequent heappush will take care of maintaining the
+                        # heap invariant
                         ver_distances_heap.remove((ver_d, ver_e, adj_ver))
                         heapq.heappush(ver_distances_heap, (new_ver_d, ver_e, adj_ver))
 
