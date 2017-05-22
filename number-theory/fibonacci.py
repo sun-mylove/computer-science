@@ -26,7 +26,7 @@ def fibonacci(n):
         else:
             return fibonacci(k + 1) ** 2 + fibonacci(k) ** 2
 
-inp = 100
+inp = 7
 print fibonacci(inp)
 
 stop = timeit.default_timer()
