@@ -1,4 +1,4 @@
-import timeit
+[import timeit
 
 start = timeit.default_timer()
 

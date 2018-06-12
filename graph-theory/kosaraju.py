@@ -83,18 +83,25 @@ def dfs_original_graph(e):
     while len(ver_traverse_stack) != 0:
         # as we are not here to build topological order, we're
         # popping element as we progress
+
         ver_picked = ver_traverse_stack.pop()
+
+        print "vertex picked:", ver_picked
 
         try:
             vertices = e[ver_picked]
         except KeyError:
             continue
 
+        print "vertices:", vertices
+
         for vertex in vertices:
             if vertex not in set_ver_visited:
                 set_ver_visited.add(vertex)
                 ver_traverse_stack.append(vertex)
                 ver_visited_temp.append(vertex)
+
+        print "ver_visited_temp:", ver_visited_temp
 
     return ver_visited_temp
 

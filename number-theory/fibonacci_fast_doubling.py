@@ -29,6 +29,4 @@ def fibonacci(n):
 inp = 35
 print fibonacci(inp)
 
-stop = timeit.default_timer()
-
-print stop - start
+print timeit.default_timer() - start

@@ -10,7 +10,7 @@ def next_square(prev, i):
     # (n + 1)^2 = n^2 + 2n + 1
     return prev + 2 * i + 1
 
-inp = 1000000000000
+inp = 100
 squares = [1]
 
 i = 1
