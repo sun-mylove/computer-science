@@ -28,9 +28,8 @@ def kmp_pattern_search(pat, txt):
 
 
 def calc_lps(pat, M, lps):
-    len = 0
 
-    lps[0]
+    len = 0
     i = 1
 
     while i < M:
